@@ -15,28 +15,28 @@ We shall build this project step-by-step beginning with:
 - Web static
   
   HTML/CSS
-  create the HTML of your application
-  create template of each object
+  create the HTML of your application.
+  create template of each object.
 
 - MySQL storage:
   
-  Replace the file storage by a Database storage
+  Replace the file storage by a Database storage.
   map our models to a table in database by using an O.R.M.
 
 - Web framework - templating
   
-  create our first web server in Python
-  make our static HTML file dynamic by using objects stored in a file or database
+  create our first web server in Python.
+  make our static HTML file dynamic by using objects stored in a file or database.
 
 - RESTful API
   
-  expose all our objects stored via a JSON web interface
-  manipulate our objects via a RESTful API
+  expose all our objects stored via a JSON web interface.
+  manipulate our objects via a RESTful API.
 
 - Web dynamic
   
-  learn JQuery
-  load objects from the client side by using our own RESTful API
+  learn JQuery.
+  load objects from the client side by using our own RESTful API.
 
 - Files and Directories
   
