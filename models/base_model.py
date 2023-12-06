@@ -30,6 +30,11 @@ class BaseModel:
 		
 		
 	def to_dict(self):
+		""" returns a dictionary containing all keys/values of __dict__ of the instance
+
+		Returns:
+			dict: dictionary for all instances
+		"""
 		dictionary = self.__dict__.copy()
 		dictionary["__class__"] = self.__class__.__name__
 		dictionary["created_at"] = self.created_at.isoformat()
