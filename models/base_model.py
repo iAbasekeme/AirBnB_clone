@@ -19,7 +19,10 @@ class BaseModel:
         self.updated_at = datetime.now()        
         
         
-    def to_dict(self):                   
+    def to_dict(self):
+        """
+        Method that create dictionnary containing all attribute
+        """
         dictionary = self.__dict__.copy()
         dictionary["__class__"] = self.__class__.__name__
         dictionary["created_at"] = self.created_at.isoformat()
