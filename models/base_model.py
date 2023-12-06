@@ -20,7 +20,13 @@ class BaseModel:
         
         
     def to_dict(self):                   
-        return {k: v for k, v in self.__dict__.items()}
+        dictionary = self.__dict__.copy()
+        dictionary["__class__"] = self.__class__.__name__
+        dictionary["created_at"] = self.created_at.isoformat()
+        dictionary["updated_at"] = self.updated_at.isoformat()
+
+        return dictionary
+
     
 my_model = BaseModel()
 my_model.name = "My First Model"
