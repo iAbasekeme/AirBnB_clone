@@ -31,7 +31,8 @@ class BaseModel:
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        """ returns a dictionary containing all keys/values of __dict__ of the instance
+        """ returns a dictionary containing
+        all keys/values of __dict__ of the instance
 
         Returns:
                 dict: dictionary for all instances
