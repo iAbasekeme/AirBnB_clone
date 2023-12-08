@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-"""
-FileStorage module
-"""
 import json
 import os
 from models.base_model import BaseModel
@@ -9,40 +6,40 @@ from models.base_model import BaseModel
 
 class FileStorage:
     """
-    FileStorage class
+    Class FileStorage
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
         """
-        Method that return the dictionnary containing attributes
+        Method that return the dictionary
         """
         return self.__objects
 
-    def new(self, obj):
+    def new(self,obj):
         """
-        Method that add a key as class_name.id with the value to the dictionary
+        Method that construct our dictionay with key(class.id)
+        and value(obj==>{})
         """
-        key = obj.__class__.__name__ + "." + obj.id  # Ex = BaseModel.12121212
+        #dict = {334HF4, 2023 12 7 11 5 454,2023 12 7 11 5 487} 
+        #__dict= {key: {}}
+        #key = name_class.id
+        key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
 
     def save(self):
         """
-        Method for serialization of the dictionnary
+        Serialization of the dictionary to JSON file
         """
         new_dict = {}
         for key, value in self.__objects.items():
             new_dict[key] = value.to_dict()
         save = json.dumps(new_dict)
-
         with open(self.__file_path, "w") as file:
             file.write(save)
 
     def reload(self):
-        """
-        Method for deserialization of the dictionnary
-        """
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as file:
                 new_dict = json.load(file)
