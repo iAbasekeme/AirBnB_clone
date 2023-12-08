@@ -27,17 +27,11 @@ class FileStorage:
         #key = name_class.id
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
-
+    
     def save(self):
-        """
-        Serialization of the dictionary to JSON file
-        """
-        new_dict = {}
-        for key, value in self.__objects.items():
-            new_dict[key] = value.to_dict()
-        save = json.dumps(new_dict)
-        with open(self.__file_path, "w") as file:
-            file.write(save)
+        with open(self.__file_path, 'w', encoding="utf-8") as file:
+            json.dump({key: value.to_dict for key,
+                value in FileStorage.__objects.items()}, file)
 
     def reload(self):
         if os.path.exists(self.__file_path):
