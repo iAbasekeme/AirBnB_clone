@@ -1,13 +1,15 @@
-"""A class for file storage
+#!/usr/bin/python3
+"""
+FileStorage module
 """
 import json
-import sys
-import models
-print(sys.path)
+import os
+from models.base_model import BaseModel
 
 
 class FileStorage:
-    """A class filestorage for file storage
+    """
+    FileStorage class
     """
     __file_path = "file.json"
     __objects = {}
@@ -29,8 +31,12 @@ class FileStorage:
                        value in FileStorage.__objects.items()}, file)
 
     def reload(self):
-        if self.__file_path:
-            with open(self.__file_path, 'r') as file:
-                self.__objects = json.load(file)
-        else:
-            pass
+        """
+        Method for deserialization of the dictionnary
+        """
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, "r") as file:
+                new_dict = json.load(file)
+                for key, value in new_dict.items():
+                    obj = eval(value["__class__"])(**value)
+                    self.__objects[key] = obj
