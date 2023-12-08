@@ -14,7 +14,6 @@ class BaseModel:
         """An init method for instances
         """
         if kwargs:
-            del kwargs['__class__']
             for k, v in kwargs.items():
                 if k in ['created_at', 'updated_at']:
                     setattr(self, k, datetime.strptime(
@@ -41,7 +40,6 @@ class BaseModel:
         """A save method to update time
         """
         self.updated_at = datetime.now()
-        storage.save()
 
         models.storage.save()
 
@@ -72,7 +70,7 @@ print(my_model_json)
 print("JSON of my_model:")
 for key in my_model_json.keys():
     print("\t{}: ({}) - {}".format(key,
-          type(my_model_json[key]), my_model_json[key]))
+        type(my_model_json[key]), my_model_json[key]))
 
 print("-----------------------")
 my_new_model = BaseModel(**my_model_json)
