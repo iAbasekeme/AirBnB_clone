@@ -32,10 +32,10 @@ class HBNBCommand(cmd.Cmd):
             }
 
     def emptyline(self):
-        #print('emptyline()')
-        #return cmd.Cmd.emptyline(self)
+        # print('emptyline()')
+        # return cmd.Cmd.emptyline(self)
         pass
-    
+
     def precmd(self, line):
         """
         Method precmd for reformation the given input
@@ -47,36 +47,36 @@ class HBNBCommand(cmd.Cmd):
             if match_1:
                 class_name = match_1.group(1)
                 instance_id = match_1.group(2)
-                #print(f"Class Name: {class_name}")
-                #print(f"Instance ID: {instance_id}")
-                line = line.replace(".", " ").replace("(","").replace(")", "")
-                line  = line.split(" ")
+                # print(f"Class Name: {class_name}")
+                # print(f"Instance ID: {instance_id}")
+                line = line.replace(".", " ").replace("(", "").replace(")", "")
+                line = line.split(" ")
                 line = f"{line[1]} {line[0]}"
-                #print(line)
+                # print(line)
                 lines = line.split("\"")
                 new = f'{lines[0]} {class_name} {instance_id}'
-                #print(new)
+                # print(new)
                 return cmd.Cmd.precmd(self, new)
             elif match_2:
                 class_name = match_2.group(1)
                 instance_id = match_2.group(2)
-                #print(f"Class Name: {class_name}")
-                #print(f"Instance ID: {instance_id}")
-                line = line.replace(".", " ").replace("(","").replace(")", "")
-                line  = line.split(" ")
+                # print(f"Class Name: {class_name}")
+                # print(f"Instance ID: {instance_id}")
+                line = line.replace(".", " ").replace("(", "").replace(")", "")
+                line = line.split(" ")
                 line = f"{line[1]} {line[0]}"
-                #print(line)
+                # print(line)
                 lines = line.split("\"")
                 new = f'{lines[0]} {class_name} {instance_id}'
-                #print(new)
+                # print(new)
                 return cmd.Cmd.precmd(self, new)
-  
-            line = line.replace(".", " ").replace("(","").replace(")", "")
-            line  = line.split(" ")
+
+            line = line.replace(".", " ").replace("(", "").replace(")", "")
+            line = line.split(" ")
             line = f"{line[1]} {line[0]}"
-            #print(line)
+            # print(line)
         return cmd.Cmd.precmd(self, line)
- 
+
     def do_create(self, line):
         """
         Method to create a new instance
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Method to show attributes of an instance
         """
-        arguments = shlex.split(line)   #this split the line if there is spacce or quote
+        arguments = shlex.split(line)
 
         if not arguments or len(arguments) < 1:
             print("** class name missing **")
@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist**")
 
         elif len(arguments) == 1 and arguments[0] in HBNBCommand.classes:
-             print("** instance id missing **")
+            print("** instance id missing **")
         else:
             dictionary = storage.all()
             key = "{}.{}".format(arguments[0], arguments[1])
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Method that delete an instance based on the id and class name
         """
-        arguments = shlex.split(line)   #this split the line if there is spacce or quote
+        arguments = shlex.split(line)
         if not arguments or len(arguments) < 1:
             print("** class name missing **")
 
@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist**")
 
         elif len(arguments) == 1 and arguments[0] in HBNBCommand.classes:
-             print("** instance id missing **")
+            print("** instance id missing **")
         else:
             new_dict = storage.all()
             key = "{}.{}".format(arguments[0], arguments[1])
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 del new_dict[key]
                 storage.save()
-        
+
     def do_all(self, line):
         """
         Method that show all instance with their attributes
@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in dictionary.items():
                 string.append(str(value))
             print(string)
-        
+
         else:
             if arguments[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
@@ -186,15 +186,15 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
 
-            #update BaseModel id attr_name value
-            #setattr(obj, attribute_name, value
-            #ex:    obj = BaseModel()
-            #       obj.name = "Betty"
-            #===>   setattr(obj, name, value)
+            # update BaseModel id attr_name value
+            # setattr(obj, attribute_name, value
+            # ex:    obj = BaseModel()
+            #        obj.name = "Betty"
+            # ===>   setattr(obj, name, value)
             instance = dictionary[key]
             attribute_name = arguments[2]
             if attribute_name not in ["id", "created_at", "updated_at"]:
-                #if not arguments[3]:
+                # if not arguments[3]:
                 #    print("** value missing **")
                 value = arguments[3]
                 try:
@@ -204,7 +204,7 @@ class HBNBCommand(cmd.Cmd):
                     pass
                 setattr(instance, attribute_name, value)
                 instance.save()
-    
+
     def do_count(self, line):
         """
         Method that count the number of instance of a class
@@ -212,7 +212,7 @@ class HBNBCommand(cmd.Cmd):
         # count BaseModel
         arguments = shlex.split(line)
         class_name = arguments[0]
-       #let's load the dictionnay containing all instances have been created
+        # let's load all instances have been created
         if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
@@ -230,12 +230,13 @@ class HBNBCommand(cmd.Cmd):
         """
         print()
         return True
-    
+
     def do_quit(self, line):
         """Quit command to exit the program
 
         """
         return True
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

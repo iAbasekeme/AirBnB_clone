@@ -43,7 +43,7 @@ class FileStorage:
         try:
             # os.path.exists(FileStorage.__file_path)
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
-                #print("hereee")
+                # print("hereee")
                 new_dict = json.load(file)
                 for key, value in new_dict.items():
                     obj = eval(value["__class__"])(**value)
