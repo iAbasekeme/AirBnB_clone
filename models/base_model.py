@@ -28,8 +28,7 @@ class BaseModel:
         models.storage.new(self)
 
     def __str__(self):
-        """
-            A string method that returns a string representation of  class
+        """A string method that returns a string representation of  class
 
         Returns:
                 str: For string output
@@ -37,8 +36,7 @@ class BaseModel:
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """
-            A save method to update time for changes in the instances
+        """A save method to update time for changes in the instances
         """
         self.updated_at = datetime.now()
         models.storage.save()
