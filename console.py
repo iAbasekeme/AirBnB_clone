@@ -32,6 +32,9 @@ class HBNBCommand(cmd.Cmd):
             }
 
     def emptyline(self):
+        """
+        Emptyline method
+        """
         # print('emptyline()')
         # return cmd.Cmd.emptyline(self)
         pass
