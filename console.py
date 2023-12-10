@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Console module
+"""
 import sys
 import cmd
 import shlex
@@ -12,7 +15,11 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
+    """
+    Class console for user interaction
+    """
     prompt = "(hbnb) "
     classes = {
             "BaseModel": BaseModel,
@@ -30,6 +37,10 @@ class HBNBCommand(cmd.Cmd):
         pass
     
     def precmd(self, line):
+        """
+        Method precmd for reformation the given input
+        Args: line
+        """
         if "." in line:
             match_1 = re.match(r'(\w+)\.show\("([^"]+)"\)', line)
             match_2 = re.match(r'(\w+)\.destroy\("([^"]+)"\)', line)
@@ -67,6 +78,9 @@ class HBNBCommand(cmd.Cmd):
         return cmd.Cmd.precmd(self, line)
  
     def do_create(self, line):
+        """
+        Method to create a new instance
+        """
         if not line:
             print("** class name missing **")
             return
@@ -78,6 +92,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
+        """
+        Method to show attributes of an instance
+        """
         arguments = shlex.split(line)   #this split the line if there is spacce or quote
 
         if not arguments or len(arguments) < 1:
@@ -98,6 +115,9 @@ class HBNBCommand(cmd.Cmd):
         return
 
     def do_destroy(self, line):
+        """
+        Method that delete an instance based on the id and class name
+        """
         arguments = shlex.split(line)   #this split the line if there is spacce or quote
         if not arguments or len(arguments) < 1:
             print("** class name missing **")
@@ -117,6 +137,9 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
         
     def do_all(self, line):
+        """
+        Method that show all instance with their attributes
+        """
         arguments = shlex.split(line)
 
         string = []
@@ -136,6 +159,9 @@ class HBNBCommand(cmd.Cmd):
             print(string)
 
     def do_update(self, line):
+        """
+        Method to update or add a new attribute
+        """
         arguments = shlex.split(line)
         if not arguments or len(arguments) < 1:
             print("** class name missing **")
@@ -180,6 +206,9 @@ class HBNBCommand(cmd.Cmd):
                 instance.save()
     
     def do_count(self, line):
+        """
+        Method that count the number of instance of a class
+        """
         # count BaseModel
         arguments = shlex.split(line)
         class_name = arguments[0]
@@ -196,6 +225,9 @@ class HBNBCommand(cmd.Cmd):
             print(count)
 
     def do_EOF(self, line):
+        """EOF  help  quit
+
+        """
         print()
         return True
     
