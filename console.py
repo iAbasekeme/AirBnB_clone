@@ -86,7 +86,6 @@ class HBNBCommand(cmd.Cmd):
         """
         if not line:
             print("** class name missing **")
-            return
         try:
             create = eval(line)()
             create.save()
@@ -115,7 +114,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 print(dictionary[key])
-        return
 
     def do_destroy(self, line):
         """
@@ -168,26 +166,20 @@ class HBNBCommand(cmd.Cmd):
         arguments = shlex.split(line)
         if not arguments or len(arguments) < 1:
             print("** class name missing **")
-            return
 
         elif arguments[0] not in HBNBCommand.classes:
             print("** class doesn't exist**")
-            return
         elif arguments[0] in HBNBCommand.classes and len(arguments) == 1:
             print("** instance id missing **")
-            return
         elif arguments[0] in HBNBCommand.classes and len(arguments) == 2:
             print("** attribute name missing **")
-            return
         elif arguments[0] in HBNBCommand.classes and len(arguments) == 3:
             print("** value missing **")
-            return
         else:
             dictionary = storage.all()
             key = "{}.{}".format(arguments[0], arguments[1])
             if key not in dictionary:
                 print("** no instance found **")
-                return
 
             # update BaseModel id attr_name value
             # setattr(obj, attribute_name, value
@@ -218,7 +210,6 @@ class HBNBCommand(cmd.Cmd):
         # let's load all instances have been created
         if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
-            return
         else:
             dictionnary = storage.all()
             count = 0
@@ -242,10 +233,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        # Non-interactive mode, process command-line arguments
-        commands = ' '.join(sys.argv[1:])
-        HBNBCommand().onecmd(commands)
-    else:
-        # Interactive mode
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
