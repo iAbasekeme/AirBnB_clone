@@ -84,14 +84,14 @@ class HBNBCommand(cmd.Cmd):
         """
         Method to create a new instance
         """
-        if not line:
-            print("** class name missing **")
-        try:
-            create = eval(line)()
-            create.save()
-            print(create.id)
-        except NameError:
-            print("** class doesn't exist **")
+        if line:
+            try:
+                create = eval(line)()
+                create.save()
+                print(create.id)
+            except NameError:
+                print("** class doesn't exist **")
+        print("** class name missing **")
 
     def do_show(self, line):
         """
