@@ -22,14 +22,14 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
     classes = {
-        "BaseModel": BaseModel,
-        "User": User,
-        "State": State,
-        "City": City,
-        "Amenity": Amenity,
-        "Place": Place,
-        "Review": Review
-    }
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
+            }
 
     def emptyline(self):
         """
@@ -84,14 +84,14 @@ class HBNBCommand(cmd.Cmd):
         """
         Method to create a new instance
         """
-        if line:
-            try:
-                create = eval(line)()
-                create.save()
-                print(create.id)
-            except NameError:
-                print("** class doesn't exist **")
-        print("** class name missing **")
+        if not line:
+            print("** class name missing **")
+        try:
+            create = eval(line)()
+            create.save()
+            print(create.id)
+        except NameError:
+            print("** class doesn't exist **")
 
     def do_show(self, line):
         """
@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
         elif arguments[0] not in HBNBCommand.classes:
-            print("** class doesn't exist **")
+            print("** class doesn't exist**")
 
         elif len(arguments) == 1 and arguments[0] in HBNBCommand.classes:
             print("** instance id missing **")
@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
         elif arguments[0] not in HBNBCommand.classes:
-            print("** class doesn't exist **")
+            print("** class doesn't exist**")
 
         elif len(arguments) == 1 and arguments[0] in HBNBCommand.classes:
             print("** instance id missing **")
@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
         elif arguments[0] not in HBNBCommand.classes:
-            print("** class doesn't exist **")
+            print("** class doesn't exist**")
         elif arguments[0] in HBNBCommand.classes and len(arguments) == 1:
             print("** instance id missing **")
         elif arguments[0] in HBNBCommand.classes and len(arguments) == 2:
