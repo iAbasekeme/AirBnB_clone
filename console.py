@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
         elif arguments[0] not in HBNBCommand.classes:
-            print("** class doesn't exist**")
+            print("** class doesn't exist **")
 
         elif len(arguments) == 1 and arguments[0] in HBNBCommand.classes:
             print("** instance id missing **")
@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
         elif arguments[0] not in HBNBCommand.classes:
-            print("** class doesn't exist**")
+            print("** class doesn't exist **")
         elif arguments[0] in HBNBCommand.classes and len(arguments) == 1:
             print("** instance id missing **")
         elif arguments[0] in HBNBCommand.classes and len(arguments) == 2:
