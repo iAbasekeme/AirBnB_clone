@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 class BaseModel:
-    """A BaseModel class that handles the baseModel
+    """A BaseModel class
     """
 
     def __init__(self, *args, **kwargs):
@@ -28,7 +28,7 @@ class BaseModel:
         models.storage.new(self)
 
     def __str__(self):
-        """A string method that returns a string representation of  class
+        """A string method
 
         Returns:
                 str: For string output
@@ -36,17 +36,17 @@ class BaseModel:
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """A save method to update time for changes in the instances
+        """A save method to update time
         """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """ returns a dictionary containing
-            all keys/values of __dict__ of the instance
+        all keys/values of __dict__ of the instance
 
         Returns:
-            dict: dictionary for all instances
+                dict: dictionary for all instances
         """
         dictionary = self.__dict__.copy()
         dictionary["__class__"] = self.__class__.__name__
