@@ -3,10 +3,36 @@
   <head>
     <html charset="utf-8">  
     <meta name="viewport" content="width=device-width">
+    <style>
+        body {
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        header{
+            background-color: #FF0000;
+            height: 70px;
+            width: 100%;
+        }
+        main {
+            flex: 1;
+        }
+        footer{
+            background-color: #00FF00;
+            height: 60px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
   </head>
   <body>
-    <header style="background-color: #FF0000;height: 70px;width: 100%;"></header>    
-    <footer style="background-color: green; height: 60px; width: 100%; text-align: center;">
+    <header></header> 
+    <main></main>
+    <footer>
       School
     </footer> 
   </body>   
